@@ -89,3 +89,7 @@ body {
 footer {
   text-align: center;
 }
+
+.selected {
+  background-color: #b48c73;
+}
