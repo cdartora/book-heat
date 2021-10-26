@@ -81,6 +81,8 @@ const fetchBooks = async (endpoint) => {
     title.innerText = `${book} (${year})`;
     author.innerText = books[randomNumber].volumeInfo.authors;
     description.innerText = books[randomNumber].volumeInfo.description;
+    pageContainer.style.display = 'block';
+    pages.innerText = books[randomNumber].volumeInfo.pageCount;
     cover.style.display = 'block';
     cover.src = thumbnail;
 
