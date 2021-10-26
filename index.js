@@ -7,6 +7,9 @@ const author = document.querySelector('.book-author');
 const description = document.querySelector('.book-desc');
 const searchButton = document.querySelector('#btn-generate');
 const shortButton = document.querySelector('#btn-short');
+const pages = document.querySelector('.pages-counter');
+const pageContainer = document.querySelector('#pages');
+
 
 const generateRandomNumber = (length) => Math.floor(Math.random()*length);
 
@@ -24,6 +27,9 @@ const createLoadscreen = () => {
 }
 
 const getRealeseYear = (date) => {
+  if (!date) {
+    return '-';
+  }
   const splitedDate = date.split('-');
   return splitedDate[0];
 }
@@ -68,12 +74,14 @@ const fetchBooks = async (endpoint) => {
   const books = document.querySelector('.selected') !== null ? filterShortBooks(data.items) : data.items;
   const randomNumber = generateRandomNumber(books.length);
   const thumbnail = generateCover(books[randomNumber].volumeInfo.imageLinks);
-  const book = books[randomNumber].volumeInfo.title;
+  const bookName = books[randomNumber].volumeInfo.title;
   const year = getRealeseYear(books[randomNumber].volumeInfo.publishedDate);
 
-  title.innerText = `${book} (${year})`;
+  title.innerText = `${bookName} (${year})`;
   author.innerText = books[randomNumber].volumeInfo.authors;
   description.innerText = books[randomNumber].volumeInfo.description;
+  pageContainer.style.display = 'block';
+  pages.innerText = books[randomNumber].volumeInfo.pageCount;
   cover.style.display = 'block';
   cover.src = thumbnail;
 
@@ -96,6 +104,7 @@ const searchButtonEvent = () => {
 
 input.value = '';
 cover.style.display = 'none';
+pageContainer.style.display = 'none';
 
 window.onload = () => {
   genreButton.addEventListener('click', genreButtonEvent);

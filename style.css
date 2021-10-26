@@ -93,3 +93,8 @@ footer {
 .selected {
   background-color: #b48c73;
 }
+
+#pages {
+  margin-top: 20px;
+  color: #363534;
+}
