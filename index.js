@@ -69,6 +69,9 @@ const searchButtonEvent = () => {
   } else if (searchBar.includes('byAuthor')) {
     createLoadscreen();
     fetchBooks(searchByAuthor(input.value));
+  } else {
+    createLoadscreen();
+    fetchBooks(input.value)
   }
 }
 
