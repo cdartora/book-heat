@@ -7,6 +7,9 @@ const author = document.querySelector('.book-author');
 const description = document.querySelector('.book-desc');
 const searchButton = document.querySelector('#btn-generate');
 const shortButton = document.querySelector('#btn-short');
+const pages = document.querySelector('.pages-counter');
+const pageContainer = document.querySelector('#pages');
+
 
 const generateRandomNumber = (length) => Math.floor(Math.random()*length);
 
@@ -105,6 +108,7 @@ const searchButtonEvent = () => {
 
 input.value = '';
 cover.style.display = 'none';
+pageContainer.style.display = 'none';
 
 window.onload = () => {
   genreButton.addEventListener('click', genreButtonEvent);
