@@ -3,6 +3,7 @@ const cover = document.querySelector('.book-cover');
 const input = document.querySelector('.input');
 const author = document.querySelector('.book-author');
 const description = document.querySelector('.book-desc');
+const searchButton = document.querySelector('#btn-generate');
 
 const generateRandomNumber = (length) => Math.floor(Math.random()*length);
 
@@ -14,6 +15,8 @@ const generateCover = (imageLinks) => {
 }
 const createLoadscreen = () => {
   title.innerText = 'Loading...';
+  searchButton.classList.add('is-loading');
+  cover.style.display = 'none';
 }
 
 const getRealeseYear = (date) => {
@@ -33,10 +36,14 @@ const fetchBooks = async (endpoint) => {
   title.innerText = `${book} (${year})`;
   author.innerText = data.items[randomNumber].volumeInfo.authors;
   description.innerText = data.items[randomNumber].volumeInfo.description;
+  cover.style.display = 'block';
   cover.src = thumbnail;
+
+  searchButton.classList.remove('is-loading');
 };
 
 window.onload = () => {
+  input.value = '';
   createLoadscreen();
-  fetchBooks('machado de assis');
+  fetchBooks('albert camus');
 }
