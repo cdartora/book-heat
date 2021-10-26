@@ -3,15 +3,23 @@ const cover = document.querySelector('.book-cover');
 
 const generateRandomNumber = (length) => Math.floor(Math.random()*length);
 
+const generateCover = (imageLinks) => {
+  if (imageLinks === undefined) {
+    return img = 'imgs/nocover.jpg'
+  }
+  return imageLinks.thumbnail;
+}
+
 const fetchBooks = async (endpoint) => {
   const url = `https://www.googleapis.com/books/v1/volumes?q=${endpoint}&maxResults=40`;
   const response = await fetch(url);
   const data = await response.json();
   console.log(data.items.length);
   const randomNumber = generateRandomNumber(data.items.length);
+  const thumbnail = generateCover(data.items[randomNumber].volumeInfo.imageLinks);
 
   title.innerText = data.items[randomNumber].volumeInfo.title;
-  cover.src = data.items[randomNumber].volumeInfo.imageLinks.thumbnail;
+  cover.src = thumbnail;
 };
 
 window.onload = () => {
