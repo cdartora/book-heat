@@ -12,6 +12,9 @@ const generateCover = (imageLinks) => {
   }
   return imageLinks.thumbnail;
 }
+const createLoadscreen = () => {
+  title.innerText = 'Loading...';
+}
 
 const getRealeseYear = (date) => {
   const splitedDate = date.split('-');
@@ -34,5 +37,6 @@ const fetchBooks = async (endpoint) => {
 };
 
 window.onload = () => {
-  fetchBooks('horror');
+  createLoadscreen();
+  fetchBooks('machado de assis');
 }
