@@ -11,4 +11,4 @@ const fetchBooks = async (endpoint) => {
   cover.src = data.items[1].volumeInfo.imageLinks.thumbnail;
 };
 
-fetchBooks('ficção científica');
+fetchBooks('horror');
