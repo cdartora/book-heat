@@ -10,6 +10,9 @@ const generateCover = (imageLinks) => {
   }
   return imageLinks.thumbnail;
 }
+const createLoadscreen = () => {
+  title.innerText = 'Loading...';
+}
 
 const fetchBooks = async (endpoint) => {
   const url = `https://www.googleapis.com/books/v1/volumes?q=${endpoint}&maxResults=40`;
@@ -23,5 +26,6 @@ const fetchBooks = async (endpoint) => {
 };
 
 window.onload = () => {
+  createLoadscreen();
   fetchBooks('machado de assis');
 }
