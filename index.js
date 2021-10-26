@@ -94,7 +94,7 @@ const fetchBooks = async (endpoint) => {
 };
 
 const errorHandler = () => {
-  title.innerText = 'Please, fill the search bar to generate a random book';
+  title.innerText = 'Please, fill the search bar with a valid input to generate a random book';
   searchButton.classList.remove('is-loading');
 }
 
