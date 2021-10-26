@@ -87,10 +87,15 @@ const fetchBooks = async (endpoint) => {
     searchButton.classList.remove('is-loading');
     
   } catch(error) {
-    window.alert(`Preencha a barra de busca`);
-    searchButton.classList.remove('is-loading');
+    errorHandler();
   }  
 };
+
+const errorHandler = () => {
+  title.innerText = 'Please, fill the search bar to generate a random book';
+  window.alert(`Preencha a barra de busca`);
+  searchButton.classList.remove('is-loading');
+}
 
 const searchButtonEvent = () => {
   const searchBar = input.classList.value;
