@@ -28,7 +28,7 @@ const createLoadscreen = () => {
 
 const getRealeseYear = (date) => {
   if (!date) {
-    return '-';
+    return 'Data de publicação desconhecida';
   }
   const splitedDate = date.split('-');
   return splitedDate[0];
