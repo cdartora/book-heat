@@ -66,21 +66,27 @@ const searchByAuthor = (searchInput) => `inauthor:${searchInput}`;
 
 const fetchBooks = async (endpoint) => {
   const url = `https://www.googleapis.com/books/v1/volumes?q=${endpoint}&maxResults=40`;
-  const response = await fetch(url);
-  const data = await response.json();
-  const books = document.querySelector('.selected') !== null ? filterShortBooks(data.items) : data.items;
-  const randomNumber = generateRandomNumber(books.length);
-  const thumbnail = generateCover(books[randomNumber].volumeInfo.imageLinks);
-  const book = books[randomNumber].volumeInfo.title;
-  const year = getRealeseYear(books[randomNumber].volumeInfo.publishedDate);
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    const books = document.querySelector('.selected') !== null ? filterShortBooks(data.items) : data.items;
+    const randomNumber = generateRandomNumber(books.length);
+    const thumbnail = generateCover(books[randomNumber].volumeInfo.imageLinks);
+    const book = books[randomNumber].volumeInfo.title;
+    const year = getRealeseYear(books[randomNumber].volumeInfo.publishedDate);
 
-  title.innerText = `${book} (${year})`;
-  author.innerText = books[randomNumber].volumeInfo.authors;
-  description.innerText = books[randomNumber].volumeInfo.description;
-  cover.style.display = 'block';
-  cover.src = thumbnail;
+    title.innerText = `${book} (${year})`;
+    author.innerText = books[randomNumber].volumeInfo.authors;
+    description.innerText = books[randomNumber].volumeInfo.description;
+    cover.style.display = 'block';
+    cover.src = thumbnail;
 
-  searchButton.classList.remove('is-loading');
+    searchButton.classList.remove('is-loading');
+    
+  } catch(error) {
+    window.alert(`Preencha a barra de busca`);
+    searchButton.classList.remove('is-loading');
+  }  
 };
 
 const searchButtonEvent = () => {
